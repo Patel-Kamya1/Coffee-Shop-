@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Register - Coffee Shop</title>
+    <style>
+        /* Dark Theme Styles for Registration Page */
+        body.register {
+            background-color: #1a1a1a; /* Dark background */
+            color: #ffffff; /* White text color */
+            font-family: 'Arial', sans-serif; /* Font style */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height */
+            margin: 0; /* Remove default margin */
+        }
+
+        .container.register {
+            background-color: #2a2a2a; /* Slightly lighter for contrast */
+            padding: 40px;
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow for depth */
+            width: 400px; /* Fixed width */
+            transition: transform 0.3s; /* Smooth scaling on hover */
+        }
+
+        .container.register:hover {
+            transform: scale(1.02); /* Scale up on hover */
+        }
+
+        .container.register h2 {
+            margin-bottom: 30px; /* Space below the heading */
+            text-align: center; /* Center the heading */
+            font-size: 1.8em; /* Larger heading */
+            color: #d4a517; /* Gold color for heading */
+        }
+
+        .form-label {
+            font-weight: bold; /* Make labels bold */
+            margin-bottom: 10px; /* Space between label and input */
+        }
+
+        .form-control {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding for input fields */
+            border: 1px solid #555; /* Border for input fields */
+            border-radius: 5px; /* Rounded input corners */
+            background-color: #333; /* Dark background for inputs */
+            color: #fff; /* White text in inputs */
+            transition: border-color 0.3s; /* Smooth border color transition */
+            margin-bottom: 15px; /* Space between input boxes */
+        }
+
+        .form-control:focus {
+            border-color: #d4a517; /* Gold border on focus */
+            outline: none; /* Remove outline */
+        }
+
+        .btn {
+            width: 100%; /* Full-width button */
+            background-color: #d4a517; /* Button color */
+            border: none; /* Remove border */
+            padding: 12px; /* Add padding */
+            border-radius: 5px; /* Rounded button corners */
+            font-size: 1.1em; /* Larger button text */
+            color: #fff; /* White text on button */
+            cursor: pointer; /* Change cursor on hover */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .btn:hover {
+            background-color: #b38a16; /* Darker on hover */
+        }
+
+        #register-message {
+            margin-top: 20px; /* Space above message */
+            text-align: center; /* Center the message */
+            font-size: 1.2em; /* Larger message text */
+            color: #d4a517; /* Color for the message */
+        }
+    </style>
+</head>
+<body class="register">
+    <div class="container register">
+        <h2>Register</h2>
+        <form id="register-form">
+            <div class="mb-3">
+                <label for="full-name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="full-name" required>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+             <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" required>
+             </div>
+             <button type="submit" class="btn">Sign Up</button>
+         </form>
+         <div id="register-message"></div>
+     </div>
+
+     <script>
+         document.getElementById('register-form').addEventListener('submit', function(event) {
+             event.preventDefault(); // Prevent the default form submission
+
+             // Get the values from the form
+             const fullName = document.getElementById('full-name').value;
+             const username = document.getElementById('username').value;
+             const email = document.getElementById('email').value;
+             const phone = document.getElementById('phone').value;
+             const password = document.getElementById('password').value;
+             const confirmPassword = document.getElementById('confirm-password').value;
+
+             // Simple validation
+             if (username && email && password && confirmPassword) {
+                 if (password !== confirmPassword) {
+                     document.getElementById('register-message').innerText = 'Passwords do not match.';
+                     document.getElementById('register-message').style.color = 'red';
+                 } else {
+                     document.getElementById('register-message').innerText = `Welcome, ${fullName}! You have successfully registered.`;
+                     document.getElementById('register-message').style.color = 'green';
+                     
+                     // Here you could redirect to another page or perform other actions
+                     // window.location.href = 'welcome.html'; // Example redirection
+                     document.getElementById('register-form').reset(); // Reset the form after submission
+                 }
+             } else {
+                 document.getElementById('register-message').innerText = 'Please fill in all fields.';
+                 document.getElementById('register-message').style.color = 'red';
+             }
+         });
+     </script>
+</body>
+</html>
